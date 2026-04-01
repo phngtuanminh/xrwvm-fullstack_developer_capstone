@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Cars Dealership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f9f6f1;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --charcoal: #1c1c1e;
+      --mid: #3a3a3c;
+      --muted: #8a8a8e;
+      --card-bg: #141416;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%),
+        var(--black);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900; line-height: 1.05;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      max-width: 560px; margin: 2rem auto 0;
+      font-size: 1.05rem; line-height: 1.8; color: var(--muted);
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-stats {
+      display: flex; gap: 4rem; margin-top: 4rem;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-top: 0.3rem;
+    }
+
+    /* ── MISSION ── */
+    .mission {
+      padding: 7rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center; max-width: 1200px; margin: 0 auto;
+    }
+    .mission-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+      line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .mission-text h2 span { color: var(--gold); }
+    .mission-text p {
+      color: var(--muted); line-height: 1.9; font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .mission-values { display: flex; flex-direction: column; gap: 1.2rem; }
+    .value-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 12px; padding: 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .value-card:hover { border-color: var(--gold); transform: translateX(6px); }
+    .value-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--black); font-size: 1rem;
+    }
+    .value-title { font-weight: 500; margin-bottom: 0.3rem; }
+    .value-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── TEAM ── */
+    .team-section {
+      padding: 7rem 4rem;
+      background: linear-gradient(180deg, var(--black) 0%, var(--charcoal) 50%, var(--black) 100%);
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+    }
+    .section-header p {
+      color: var(--muted); max-width: 500px; margin: 1rem auto 0;
+      line-height: 1.8; font-size: 0.95rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; max-width: 1200px; margin: 0 auto;
+    }
+    .team-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: 0 20px 60px rgba(201,168,76,0.08);
+    }
+    .card-img {
+      width: 100%; height: 240px; object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+      transition: filter 0.4s;
+    }
+    .team-card:hover .card-img { filter: grayscale(0%) contrast(1.1); }
+    .card-body { padding: 1.6rem; }
+    .card-role {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;
+    }
+    .card-desc {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .card-email {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; color: var(--gold); text-decoration: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1rem; transition: opacity 0.2s;
+    }
+    .card-email:hover { opacity: 0.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted); font-size: 0.82rem;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+      .mission { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .team-section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Cars Dealership</a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dealers</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Our Story</p>
+  <h1>Driven by <em>Trust,</em><br>Built on Excellence</h1>
+  <p class="hero-sub">
+    Cars Dealership has been connecting Americans with their perfect vehicles since 2005.
+    With locations across all 50 states, we make car buying simple, transparent, and enjoyable.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">States</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Dealerships</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1M+</div>
+      <div class="stat-label">Happy Customers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">19</div>
+      <div class="stat-label">Years of Service</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section>
+  <div class="mission">
+    <div class="mission-text">
+      <h2>Our <span>Mission</span> &amp; Values</h2>
+      <p>
+        At Cars Dealership, we believe buying a car should be one of life's great joys — not a source of stress. Our mission is to deliver a transparent, fair, and memorable experience at every one of our nationwide branches.
+      </p>
+      <p>
+        From first-time buyers to seasoned collectors, we tailor our service to every customer's unique needs, backed by a team of passionate automotive professionals.
+      </p>
+    </div>
+    <div class="mission-values">
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <div class="value-title">Transparency</div>
+          <div class="value-desc">No hidden fees. No pressure tactics. Just honest pricing and clear communication every step of the way.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-star"></i></div>
+        <div>
+          <div class="value-title">Excellence</div>
+          <div class="value-desc">We hold ourselves to the highest standards — from vehicle quality to post-sale customer care.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
+        <div>
+          <div class="value-title">Community</div>
+          <div class="value-desc">We're proud members of the communities we serve, supporting local events and charitable initiatives nationwide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="section-header">
+    <p class="section-eyebrow">The People Behind the Wheel</p>
+    <h2>Meet Our Team</h2>
+    <p>A dedicated group of automotive experts, technologists, and customer champions.</p>
+  </div>
+
+  <div class="team-grid">
+
+    <div class="team-card">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80"
+        alt="James Whitfield — CEO"/>
+      <div class="card-body">
+        <div class="card-role">Chief Executive Officer</div>
+        <div class="card-name">James Whitfield</div>
+        <div class="card-desc">
+          With 25 years in the automotive industry, James founded Cars Dealership with a vision to redefine the national car retail experience through transparency and technology.
+        </div>
+        <a class="card-email" href="mailto:j.whitfield@carsdealership.com">
+          <i class="fa-solid fa-envelope"></i> j.whitfield@carsdealership.com
+        </a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80"
+        alt="Sarah Nguyen — CTO"/>
+      <div class="card-body">
+        <div class="card-role">Chief Technology Officer</div>
+        <div class="card-name">Sarah Nguyen</div>
+        <div class="card-desc">
+          Sarah leads our full-stack engineering teams, overseeing the platform's microservices architecture, cloud deployments, and AI-driven review sentiment systems.
+        </div>
+        <a class="card-email" href="mailto:s.nguyen@carsdealership.com">
+          <i class="fa-solid fa-envelope"></i> s.nguyen@carsdealership.com
+        </a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=80"
+        alt="Marcus Allen — VP of Sales"/>
+      <div class="card-body">
+        <div class="card-role">VP of Sales</div>
+        <div class="card-name">Marcus Allen</div>
+        <div class="card-desc">
+          Marcus oversees a network of 200+ dealership branches across the U.S., training sales teams to put customer satisfaction above all else — every single day.
+        </div>
+        <a class="card-email" href="mailto:m.allen@carsdealership.com">
+          <i class="fa-solid fa-envelope"></i> m.allen@carsdealership.com
+        </a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80"
+        alt="Priya Sharma — Head of Product"/>
+      <div class="card-body">
+        <div class="card-role">Head of Product</div>
+        <div class="card-name">Priya Sharma</div>
+        <div class="card-desc">
+          Priya translates customer insights into intuitive product features, ensuring the Cars Dealership platform remains the most user-friendly in the industry.
+        </div>
+        <a class="card-email" href="mailto:p.sharma@carsdealership.com">
+          <i class="fa-solid fa-envelope"></i> p.sharma@carsdealership.com
+        </a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+        alt="Daniel Torres — Lead Backend Engineer"/>
+      <div class="card-body">
+        <div class="card-role">Lead Backend Engineer</div>
+        <div class="card-name">Daniel Torres</div>
+        <div class="card-desc">
+          Daniel architects our Django and Node.js backend services, keeping millions of dealer records, reviews, and transactions running smoothly in real time.
+        </div>
+        <a class="card-email" href="mailto:d.torres@carsdealership.com">
+          <i class="fa-solid fa-envelope"></i> d.torres@carsdealership.com
+        </a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80"
+        alt="Olivia Chen — Customer Experience Manager"/>
+      <div class="card-body">
+        <div class="card-role">Customer Experience Manager</div>
+        <div class="card-name">Olivia Chen</div>
+        <div class="card-desc">
+          Olivia champions the voice of the customer, analyzing review sentiment data to continuously improve service quality across every dealership location.
+        </div>
+        <a class="card-email" href="mailto:o.chen@carsdealership.com">
+          <i class="fa-solid fa-envelope"></i> o.chen@carsdealership.com
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <span>Cars Dealership</span>. All rights reserved. Nationwide car retail reimagined.</p>
+</footer>
+
+</body>
+</html>
